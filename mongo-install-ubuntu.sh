@@ -26,12 +26,6 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   #sudo bash -c "ufw allow proto tcp from any to any port 27017" #recommend 'from any' to local network range
   #sudo bash -c "ufw enable"  
   
-  #Remove old sock
-  sudo rm -rf /tmp/mongodb-27017.sock
-  
-  #Checkpoint
-  echo 'Reached! after sock deletion'
-  
   #Config
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
@@ -41,9 +35,9 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   sudo bash -c "echo 'security:' >> /etc/mongod.conf"
   sudo bash -c "echo '  authorization: enabled' >> /etc/mongod.conf"
   
+  #Create mongo user
+  mongo "admin" --eval "db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
+  
 # Uncomment this to bind to all ip addresses
  sudo sed -i -e 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
  sudo service mongod restart
-
-  #Create mongo user
-  mongo "subengine" --eval "db.createUser({'user':'smowner','pwd':'test','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
