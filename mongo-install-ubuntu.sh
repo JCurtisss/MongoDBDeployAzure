@@ -46,4 +46,4 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
  sudo service mongod restart
 
   #Create mongo user
-  mongo "subengine" --eval "db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
+  mongo "subengine" --eval "db.createUser({'user':'smowner','pwd':'test','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
