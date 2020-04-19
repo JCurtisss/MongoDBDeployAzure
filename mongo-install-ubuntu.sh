@@ -26,6 +26,9 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   #sudo bash -c "ufw allow proto tcp from any to any port 27017" #recommend 'from any' to local network range
   #sudo bash -c "ufw enable"  
   
+  #Remove old sock
+  sudo rm -rf /tmp/mongodb-27017.sock
+  
   #Config
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
