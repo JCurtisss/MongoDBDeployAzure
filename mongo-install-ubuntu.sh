@@ -1,7 +1,3 @@
-# Configure mongodb.list file with the correct location
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
-echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
-
 # Disable THP
 sudo echo never > /sys/kernel/mm/transparent_hugepage/enabled
 sudo echo never > /sys/kernel/mm/transparent_hugepage/defrag
@@ -22,8 +18,8 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   
   sudo bash -c " mkdir /data /data/db"
     
-  sudo bash -c "ufw allow proto tcp from any to any port 27017" #recommend 'from any' to local network range
-  sudo bash -c "ufw enable"  
+  #sudo bash -c "ufw allow proto tcp from any to any port 27017" #recommend 'from any' to local network range
+  #sudo bash -c "ufw enable"  
   
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
