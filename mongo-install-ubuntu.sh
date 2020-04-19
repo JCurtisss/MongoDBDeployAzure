@@ -41,9 +41,9 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   sudo bash -c "echo 'security:' >> /etc/mongod.conf"
   sudo bash -c "echo '  authorization: enabled' >> /etc/mongod.conf"
   
-  #Create mongo user
-  mongo "admin" --eval "db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
-  
 # Uncomment this to bind to all ip addresses
  sudo sed -i -e 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
  sudo service mongod restart
+
+  #Create mongo user
+  mongo "subengine" --eval "db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
