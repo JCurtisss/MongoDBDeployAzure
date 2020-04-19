@@ -18,18 +18,18 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   
   #Make data location
   sudo bash -c " mkdir /data /data/db"
-    
+  
+  #allow root user to access mongo location
+  sudo chown -R $USER /data/db
+  sudo chown -R $USER /tmp/
+
   #sudo bash -c "ufw allow proto tcp from any to any port 27017" #recommend 'from any' to local network range
   #sudo bash -c "ufw enable"  
   
   #Config
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
-  
-  #allow root user to access mongo location
-  sudo chown -R $USER /data/db
-  sudo chown -R $USER /tmp/
-  
+    
   #Add Authorization
   sudo bash -c "echo ' ' >> /etc/mongod.conf"
   sudo bash -c "echo 'security:' >> /etc/mongod.conf"
