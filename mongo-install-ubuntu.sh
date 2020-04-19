@@ -32,15 +32,15 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   #Config
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
-    
-  #Add Authorization
-  sudo bash -c "echo ' ' >> /etc/mongod.conf"
-  sudo bash -c "echo 'security:' >> /etc/mongod.conf"
-  sudo bash -c "echo '  authorization: enabled' >> /etc/mongod.conf"
   
   #Create mongo user
   mongo "subengine" --eval "db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
   
-# Uncomment this to bind to all ip addresses
+  #Add Authorization
+  sudo bash -c "echo ' ' >> /etc/mongod.conf"
+  sudo bash -c "echo 'security:' >> /etc/mongod.conf"
+  sudo bash -c "echo '  authorization: enabled' >> /etc/mongod.conf"
+    
+ # Uncomment this to bind to all ip addresses
  sudo sed -i -e 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
  sudo service mongod restart
