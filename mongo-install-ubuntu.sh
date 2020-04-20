@@ -35,8 +35,8 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   
   #Create mongo user
   mongo <<EOF
-    use admin;
-    db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']});
+  use admin;
+  #db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']});
   EOF
   
   #Add Authorization
