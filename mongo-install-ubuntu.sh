@@ -17,7 +17,7 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   sudo bash -c "apt autoremove && apt clean"
   
   #Make data location
-  sudo bash -c " mkdir /data /data/db"
+  sudo bash -c "mkdir /data /data/db"
   
   #allow root user to access mongo location
   sudo sudo bash -c "chown -R $USER /data/db"
@@ -27,7 +27,7 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   #sudo bash -c "ufw enable"  
   
   #Remove old sock
-  sudo rm -rf /tmp/mongodb-27017.sock
+  sudo rm -rf "/tmp/mongodb-27017.sock"
   
   #Config
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
