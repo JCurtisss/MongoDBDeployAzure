@@ -34,7 +34,10 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
   sudo bash -c "service mongod start"
   
   #Create mongo user
-  #mongo "admin" --eval "db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
+  mongo <<EOF
+    use admin;
+    db.createUser({'user':'$1','pwd':'$2','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']});
+  EOF
   
   #Add Authorization
   sudo bash -c "echo ' ' >> /etc/mongod.conf"
