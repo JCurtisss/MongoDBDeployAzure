@@ -43,3 +43,12 @@ sudo bash -c "sudo echo net.ipv4.tcp_keepalive_time = 120 >> /etc/sysctl.conf"
  sudo service mongod restart
  
  #Create User
+until nc -z localhost 27017
+do
+  sleep 1
+done
+
+mongo <<EOF
+use admin;
+db.createUser({ user: "$1" , pwd: "$2", roles: ["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]}) 
+EOF
