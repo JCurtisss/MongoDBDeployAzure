@@ -1,9 +1,3 @@
-function testMongoScript {
-    mongo <<EOF
-    use admin
-EOF
-}
-
 # Disable THP
 sudo echo never > /sys/kernel/mm/transparent_hugepage/enabled
 sudo echo never > /sys/kernel/mm/transparent_hugepage/defrag
